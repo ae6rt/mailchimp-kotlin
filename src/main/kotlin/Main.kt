@@ -9,9 +9,9 @@ import org.petrovic.mailchimp.MailChimp
 import java.text.SimpleDateFormat
 
 fun main(args: Array<String>) {
-    var t = 0;
-    var targetListName : String = ""
-    var since : String = ""
+    var t = 0
+    var targetListName : String? = null
+    var since : String? = null
     while(t < args.size) {
         if( args[t].equals("--list")) {
             targetListName = args[++t]
@@ -19,47 +19,50 @@ fun main(args: Array<String>) {
         if( args[t].equals("--since")) {
             since = args[++t]
         }
-        ++t;
+        ++t
     }
-    if( targetListName.length == 0 ){
-        println("A list name must be provided with --list <listname>");
-        System.exit(-1);
+    if( targetListName == null ){
+        println("A list name must be provided with --list <listname>")
+        System.exit(-1)
     }
 
-    val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    val date = if( since.length != 0 ) {
-        formatter.parse(since);
+    val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+    val date = if( since != null ) {
+        formatter.parse(since)
     } else {
         Date(0)
     }
 
-    println("target list name: " + targetListName)
-    println("since: " + date)
+    println("target list name: ${targetListName}")
+    println("since: ${date}")
 
     val mailChimp = MailChimp()
     val driver = mailChimp.mcService()
 
-    val lists = driver.lists();
-    var targetList : MailingList? = null;
+    val lists = driver.lists()
+    var targetList : MailingList? = null
     for (list in  lists) {
         if (list?.getName().equals(targetListName)) {
             targetList = list
-            break;
+            break
         }
+    }
+    if( targetList == null ) {
+        println("No list found with name ${targetListName}")
+        System.exit(-1)
     }
 
     val pagesize = 100
-    var n = 0
+    var page = 0
     var members : List<MemberResponseInfo?>?
     do {
-        members = driver.listMembers(targetList?.getId(), MemberStatus.unsubscribed, date, n, pagesize)
+        members = driver.listMembers(targetList?.getId(), MemberStatus.unsubscribed, date, page++, pagesize)
         doUnsubscribe(members)
-        ++n
     } while (members?.size() == pagesize)
 }
 
 fun doUnsubscribe(members : List<MemberResponseInfo?>?) : Unit {
     for (t in members) {
-        println("@@@ do unsubscribe on: " + t?.getEmail())
+        println("@@@ do unsubscribe on: ${t?.getEmail()}")
     }
 }
