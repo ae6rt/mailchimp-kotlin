@@ -47,8 +47,15 @@ fun main(args: Array<String>) {
             break;
         }
     }
-    val members = driver.listMembers(targetList?.getId(), MemberStatus.unsubscribed, date, 0, 100)
-    doUnsubscribe(members)
+
+    val pagesize = 100
+    var n = 0
+    var members : List<MemberResponseInfo?>?
+    do {
+        members = driver.listMembers(targetList?.getId(), MemberStatus.unsubscribed, date, n, pagesize)
+        doUnsubscribe(members)
+        ++n
+    } while (members?.size() == pagesize)
 }
 
 fun doUnsubscribe(members : List<MemberResponseInfo?>?) : Unit {
