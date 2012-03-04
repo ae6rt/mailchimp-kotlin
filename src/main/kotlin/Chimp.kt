@@ -17,13 +17,15 @@ class Account() {
         userName = p.getProperty("username")
         password = p.getProperty("password")
         apiKey = p.getProperty("apikey")
+        println(this)
     }
 
-    fun toString() : String? = String.format("username=%s, apiKey=%s", userName, apiKey)
+    fun toString() : String? = String.format("MailChimp account:  username=%s, apiKey=%s", userName, apiKey)
 }
 
 class MailChimp() {
     val account = Account()
+
     fun mcService() : MailJimpJsonService {
         val t = MailJimpJsonService(account.userName, account.password, account.apiKey, "1.3", false)
         t.init()
