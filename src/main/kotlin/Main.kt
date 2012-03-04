@@ -21,11 +21,20 @@ fun main(args: Array<String>) {
         }
         ++t;
     }
+    if( targetListName.length == 0 ){
+        println("A list name must be provided with --list <listname>");
+        System.exit(-1);
+    }
+
     val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    val date = formatter.parse(since);
+    val date = if( since.length != 0 ) {
+        formatter.parse(since);
+    } else {
+        Date(0)
+    }
 
     println("target list name: " + targetListName)
-    println("date: " + date)
+    println("since: " + date)
 
     val mailChimp = MailChimp()
     val driver = mailChimp.mcService()
