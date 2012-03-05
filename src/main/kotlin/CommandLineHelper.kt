@@ -24,8 +24,8 @@ class CommandLineHelper(val args : Array<String>) {
             ++t
         }
         if( targetListName.length == 0 ){
-            LOG?.info("A list name must be provided with --list <listname>")
-            System.exit(-1)
+            val msg : String = "A list name must be provided with --list <listname>"
+            throw RuntimeException(msg)
         }
         val date = dateForSince(since)
         return #(targetListName, date)
