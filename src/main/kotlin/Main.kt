@@ -9,18 +9,10 @@ import org.petrovic.mailchimp.MailChimp
 import java.text.SimpleDateFormat
 
 fun main(args: Array<String>) {
-    var t = 0
-    var targetListName : String? = null
-    var since : String? = null
-    while(t < args.size) {
-        if( args[t].equals("--list")) {
-            targetListName = args[++t]
-        }
-        if( args[t].equals("--since")) {
-            since = args[++t]
-        }
-        ++t
-    }
+    val params : #(String?, String?) = getRuntimeParams(args)
+    val targetListName : String? = params._1
+    val since : String? = params._2
+
     if( targetListName == null ){
         println("A list name must be provided with --list <listname>")
         System.exit(-1)
@@ -65,4 +57,21 @@ fun doUnsubscribe(members : List<MemberResponseInfo?>?) : Unit {
     for (t in members) {
         println("@@@ do unsubscribe on: ${t?.getEmail()}")
     }
+}
+
+fun getRuntimeParams(args: Array<String>) : #(String?, String?) {
+    var t = 0
+    var targetListName : String? = null
+    var since : String? = null
+    while(t < args.size) {
+        if( args[t].equals("--list")) {
+            targetListName = args[++t]
+        }
+        if( args[t].equals("--since")) {
+            since = args[++t]
+        }
+        ++t
+    }
+    val x : #(String?, String?) = #(targetListName, since)
+    return x
 }
