@@ -7,14 +7,18 @@ import java.util.List
 import mailjimp.dom.response.list.MemberResponseInfo
 import org.petrovic.mailchimp.MailChimp
 import java.text.SimpleDateFormat
+import org.slf4j.LoggerFactory
+import org.slf4j.Logger
+
+val  LOG : Logger? = LoggerFactory.getLogger("MCDriver")
 
 fun main(args: Array<String>) {
     val commandLineHelper = CommandLineHelper(args)
     val params : #(String, Date?) = commandLineHelper.getRuntimeParams()
     val targetListName : String = params._1
     val date : Date? = params._2
-    println("target list name: ${targetListName}")
-    println("since: ${date}")
+    LOG?.info("target list name: ${targetListName}")
+    LOG?.info("since: ${date}")
 
     val mailChimp = MailChimp()
     val driver = mailChimp.mcService()
@@ -28,7 +32,7 @@ fun main(args: Array<String>) {
         }
     }
     if( targetList == null ) {
-        println("No list found with name ${targetListName}")
+        LOG?.error("No list found with name ${targetListName}")
         System.exit(-1)
     }
 
@@ -43,6 +47,6 @@ fun main(args: Array<String>) {
 
 fun doUnsubscribe(members : List<MemberResponseInfo?>?) : Unit {
     for (t in members) {
-        println("@@@ do unsubscribe on: ${t?.getEmail()}")
+        LOG?.info("@@@ do unsubscribe on: ${t?.getEmail()}")
     }
 }
