@@ -2,8 +2,12 @@ package org.petrovic.mailchimp
 
 import mailjimp.service.impl.MailJimpJsonService
 import java.util.Properties
+import org.slf4j.LoggerFactory
+import org.slf4j.Logger
 
 class Account() {
+    val LOG : Logger? = LoggerFactory.getLogger("Account")
+
     public var userName : String? = ""
     public  var password : String? = ""
     public var apiKey : String? = ""
@@ -17,7 +21,7 @@ class Account() {
         userName = p.getProperty("username")
         password = p.getProperty("password")
         apiKey = p.getProperty("apikey")
-        println(this)
+        LOG?.info(this.toString())
     }
 
     fun toString() : String? = String.format("MailChimp account:  username=%s, apiKey=%s", userName, apiKey)
