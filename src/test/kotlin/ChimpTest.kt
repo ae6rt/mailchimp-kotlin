@@ -31,14 +31,17 @@ class ChimpTest() {
     Test
     fun commandLineHelperTest() {
         val testList : String = "testlist"
+        val oc : String = "unsubscribe"
         // http://confluence.jetbrains.net/display/Kotlin/Basic+types#Basictypes-Arrays
-        val args : Array<String> = array("--list", testList, "--opcode", "unsubscribe")
+        val args : Array<String> = array("--list", testList, "--opcode", oc)
         val clh = CommandLineHelper(args)
         val tuple = clh.getRuntimeParams()
         val listName : String = tuple._1
         val date : Date? = tuple._2
+        val opcode : Opcode? = tuple._3
         Assert.assertEquals(listName, testList)
         Assert.assertEquals(date, Date(0))
+        Assert.assertEquals(opcode, Opcode.unsubscribe)
     }
 }
 
