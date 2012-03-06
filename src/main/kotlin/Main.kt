@@ -20,9 +20,7 @@ fun main(args: Array<String>) {
     LOG?.info("target list name: ${targetListName}")
     LOG?.info("since: ${date}")
 
-    val mailChimp = MailChimp()
-    val driver = mailChimp.mcService()
-
+    val driver = MailChimp().mcService()
     val lists = driver.lists()
     var targetList : MailingList? = null
     for (list in  lists) {

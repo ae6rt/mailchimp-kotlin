@@ -31,7 +31,7 @@ class CommandLineHelper(val args : Array<String>) {
         return #(targetListName, date)
     }
 
-    fun dateForSince(s : String) : Date? {
+    private fun dateForSince(s : String) : Date? {
         val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
         val date = if(s.length != 0) {
             formatter.parse(s)
