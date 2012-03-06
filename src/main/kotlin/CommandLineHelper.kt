@@ -37,10 +37,6 @@ class CommandLineHelper(val args : Array<String>) {
             val msg : String = "A list name must be provided with --list <listname>"
             throw RuntimeException(msg)
         }
-        if( opcode == null) {
-            val msg : String = "An opcode must be provided with --opcode [unsubscribe]"
-            throw RuntimeException(msg)
-        }
         val date = dateForSince(since)
         return #(targetListName, date, opcode)
     }
