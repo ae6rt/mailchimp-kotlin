@@ -1,13 +1,10 @@
 
 # Overview
 
-This simple project demonstrates the use of the Kotlin programming language to make calls into the MailChimp API
+This simple project demonstrates the use of the [Kotlin](http://confluence.jetbrains.net/display/Kotlin/Welcome)
+programming language to make calls into the [MailChimp API](http://mailchimp.com).
 
-[Kotlin](http://confluence.jetbrains.net/display/Kotlin/Welcome)
-
-[MailChimp](http://mailchimp.com)
-
-The Kotlin code uses the [MailJimp Java implementation](https://github.com/mlaccetti/MailJimp.git) to make calls into MailChimp.
+The app uses the [MailJimp Java implementation](https://github.com/mlaccetti/MailJimp.git) to make calls into MailChimp.
 
 # Runtime
 
