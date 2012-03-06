@@ -32,7 +32,7 @@ class ChimpTest() {
     fun commandLineHelperTest() {
         val testList : String = "testlist"
         // http://confluence.jetbrains.net/display/Kotlin/Basic+types#Basictypes-Arrays
-        val args : Array<String> = array("--list", testList)
+        val args : Array<String> = array("--list", testList, "--opcode", "unsubscribe")
         val clh = CommandLineHelper(args)
         val tuple = clh.getRuntimeParams()
         val listName : String = tuple._1
