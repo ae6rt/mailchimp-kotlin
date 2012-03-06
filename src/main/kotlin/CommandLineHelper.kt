@@ -24,8 +24,12 @@ class CommandLineHelper(val args : Array<String>) {
             }
             if( args[t].equals("--opcode")) {
                 val oc = args[++t]
-                // todo need idiom for Java equivalent of Enum.valueOf(string)
-                opcode = Opcode.unsubscribe
+                when (oc) {
+                    "unsubscribe" -> opcode = Opcode.unsubscribe
+                    else -> {
+                        throw  RuntimeException("invalide opcode ${oc}")
+                    }
+                }
             }
             ++t
         }
