@@ -13,9 +13,9 @@ import mailjimp.dom.enums.MemberStatus
 class Account() {
     val LOG : Logger? = LoggerFactory.getLogger("Account")
 
-    public var userName : String? = ""
-    public  var password : String? = ""
-    public var apiKey : String? = ""
+    public val userName : String?
+    public val password : String?
+    public val apiKey : String?
 
     {
         val clazz = javaClass
