@@ -12,6 +12,6 @@ The app uses the [MailJimp Java implementation](https://github.com/mlaccetti/Mai
 * Modify src/main/resource/mailchimp.properties to reflect your MailChimp username, password, and API key.
 * Then execute:
 
-$ mvn compile exec:java -Dexec.mainClass="namespace" -Dexec.args="--list oneofyourlists --since '2011-12-12 23:21:33'"
+_$ mvn compile exec:java -Dexec.mainClass="namespace" -Dexec.args="--list oneofyourlists --since '2011-12-12 23:21:33'"_
 
 The script will show you which users of the named list have unsubscribed since the date provided.
