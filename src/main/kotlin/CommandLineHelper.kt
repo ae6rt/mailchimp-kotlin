@@ -8,7 +8,7 @@ import org.slf4j.Logger
 import java.text.SimpleDateFormat
 
 class CommandLineHelper(val args : Array<String>) {
-    val  LOG : Logger? = LoggerFactory.getLogger("CommandLineHelper")
+    val  LOG : Logger? = LoggerFactory.getLogger(javaClass<CommandLineHelper>)
 
     fun getRuntimeParams() : #(String, Date?, Opcode?) {
         var t = 0

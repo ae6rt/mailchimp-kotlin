@@ -11,7 +11,7 @@ import java.util.List
 import mailjimp.dom.enums.MemberStatus
 
 class Account() {
-    val LOG : Logger? = LoggerFactory.getLogger("Account")
+    val LOG : Logger? = LoggerFactory.getLogger(javaClass<Account>)
 
     public val userName : String?
     public val password : String?
@@ -33,7 +33,7 @@ class Account() {
 }
 
 class MailChimp() {
-    val LOG : Logger? = LoggerFactory.getLogger("MailChimp")
+    val LOG : Logger? = LoggerFactory.getLogger(javaClass<MailChimp>)
     val pagesize = 100
     val driver : MailJimpJsonService
 
