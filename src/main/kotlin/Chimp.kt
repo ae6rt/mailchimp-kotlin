@@ -68,7 +68,6 @@ class MailChimp() {
         } while (members?.size() == pagesize)
     }
 
-
     private fun doUnsubscribe(members : List<MemberResponseInfo?>?) : Unit {
         for (t in members) {
             LOG?.info("@@@ do unsubscribe on: ${t?.getEmail()}")

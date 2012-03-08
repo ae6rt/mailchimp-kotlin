@@ -9,6 +9,7 @@ import org.junit.Test
 import org.petrovic.mailchimp.Account
 import jet.Array
 import java.util.Date
+import org.petrovic.mailchimp.MailChimp
 
 class ChimpTest() {
 
@@ -26,6 +27,9 @@ class ChimpTest() {
     fun testChimp() {
         val account = Account()
         Assert.assertNotNull(account)
+        Assert.assertNotNull(account.userName)
+        Assert.assertNotNull(account.password)
+        Assert.assertNotNull(account.apiKey)
     }
 
     Test
@@ -42,6 +46,12 @@ class ChimpTest() {
         Assert.assertEquals(listName, testList)
         Assert.assertEquals(date, Date(0))
         Assert.assertEquals(opcode, Opcode.unsubscribe)
+    }
+
+    Test
+    fun testDriver() {
+        val mailChimp = MailChimp()
+        Assert.assertNotNull(mailChimp)
     }
 }
 
